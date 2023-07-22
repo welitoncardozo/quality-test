@@ -72,7 +72,7 @@ public class ChampionshipServiceImpl implements ChampionshipService {
 	}
 
 	@Override
-	public List<Championship> findByescriptionContainsIgnoreCaseAndAnoEquals(String descricao, Integer ano) {
+	public List<Championship> findByDescriptionContainsIgnoreCaseAndYearEquals(String descricao, Integer ano) {
 		return repository.findByDescriptionContainsIgnoreCaseAndYearEquals(descricao, ano);
 	}
 

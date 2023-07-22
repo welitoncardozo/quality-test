@@ -22,5 +22,5 @@ public interface ChampionshipService {
 
 	List<Championship> findByDescriptionContainsIgnoreCase(String descricao);
 
-	List<Championship> findByescriptionContainsIgnoreCaseAndAnoEquals(String descricao, Integer ano);
+	List<Championship> findByDescriptionContainsIgnoreCaseAndYearEquals(String descricao, Integer ano);
 }

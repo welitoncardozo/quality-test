@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Entity (name = "pais")
+@Entity(name = "pais")
 public class Country {
 
 	@Id

@@ -1,0 +1,1 @@
+INSERT INTO campeonato (codigo_campeonato, descricao, ano) VALUES (1, 'Campeonato nacional', 2015);

@@ -55,7 +55,7 @@ public class ChampionshipResource {
 
 	@GetMapping("/description-year/{descricao}/{ano}")
 	public ResponseEntity<List<Championship>> findByDescricaoContainsIgnoreCaseAndAnoEquals(@PathVariable String descricao, @PathVariable Integer ano) {
-		List<Championship> lista = service.findByescriptionContainsIgnoreCaseAndAnoEquals(descricao, ano);
+		List<Championship> lista = service.findByDescriptionContainsIgnoreCaseAndYearEquals(descricao, ano);
 		return lista.size()>0 ? ResponseEntity.ok(lista) : ResponseEntity.noContent().build();
 	}
 	

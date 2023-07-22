@@ -1,6 +1,5 @@
 package br.com.welitoncardozo.formula1.services;
 
-import br.com.welitoncardozo.formula1.BaseTest;
 import br.com.welitoncardozo.formula1.models.Team;
 import br.com.welitoncardozo.formula1.services.exceptions.IntegrityViolation;
 import br.com.welitoncardozo.formula1.services.exceptions.ObjectNotFound;
@@ -13,14 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Transactional
-public class TeamServiceTest extends BaseTest {
+class TeamServiceTest extends BaseTest {
     private static final String TEAM_NAME_ALREADY_EXISTS = "Team";
 
     @Inject
     private TeamService teamService;
 
     @Test
-    public void testSaveSuccess() {
+    void testSaveSuccess() {
         final var team = new Team(null, "Ferrari");
         assertThat(teamService.salvar(team))
                 .extracting(Team::getName)
@@ -29,7 +28,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testSaveNameAlreadyExists() {
+    void testSaveNameAlreadyExists() {
         final var team = new Team(null, TEAM_NAME_ALREADY_EXISTS);
         assertThatThrownBy(() -> teamService.salvar(team))
                 .isInstanceOf(IntegrityViolation.class)
@@ -38,7 +37,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testUpdate() {
+    void testUpdate() {
         final var nameChanged = "Name changed";
         assertThat(teamService.update(new Team(1, nameChanged)))
                 .extracting(Team::getName)
@@ -47,7 +46,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testDelete() {
+    void testDelete() {
         final var idToDelete = 1;
 
         teamService.delete(idToDelete);
@@ -62,14 +61,14 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testListTeam() {
+    void testListTeam() {
         assertThat(teamService.listAll())
                 .isNotEmpty()
                 .hasSize(1);
     }
 
     @Test
-    public void testListEmptyTeam() {
+    void testListEmptyTeam() {
         assertThatThrownBy(() -> teamService.listAll())
                 .isInstanceOf(ObjectNotFound.class)
                 .hasMessage("Não existe equipes cadastradas");
@@ -77,7 +76,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testFindById() {
+    void testFindById() {
         assertThat(teamService.findById(1))
                 .isNotNull()
                 .extracting(Team::getName)
@@ -91,7 +90,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testFindByNameIgnoreCase() {
+    void testFindByNameIgnoreCase() {
         assertThat(teamService.findByNameIgnoreCase(TEAM_NAME_ALREADY_EXISTS))
                 .isNotEmpty()
                 .hasSize(1);
@@ -104,7 +103,7 @@ public class TeamServiceTest extends BaseTest {
 
     @Test
     @Sql({"classpath:sql/team.sql"})
-    public void testFindByNameContains() {
+    void testFindByNameContains() {
         assertThat(teamService.findByNameContains(TEAM_NAME_ALREADY_EXISTS.substring(0, 2)))
                 .isNotEmpty()
                 .hasSize(1);

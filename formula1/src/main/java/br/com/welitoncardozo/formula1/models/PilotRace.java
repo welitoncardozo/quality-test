@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,9 +31,11 @@ public class PilotRace {
 	private Integer placement;
 
 	@ManyToOne
+	@JoinColumn(name = "piloto")
 	private Pilot pilot;
 
 	@ManyToOne
+	@JoinColumn(name = "corrida")
 	private Race race;
 
 	public PilotRace(PilotRaceDTO dto, Pilot pilot, Race race) {

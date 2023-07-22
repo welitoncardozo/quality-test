@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -31,10 +32,11 @@ public class Pilot {
 	
 	@ManyToOne
 	@NotNull
+	@JoinColumn(name = "pais")
 	private Country country;
 	
 	@ManyToOne
 	@NotNull
+	@JoinColumn(name = "equipe")
 	private Team team;
-
 }
