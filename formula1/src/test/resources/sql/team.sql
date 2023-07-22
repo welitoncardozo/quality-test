@@ -1,0 +1,1 @@
+INSERT INTO equipe (id, name) VALUES (1, 'Team');
